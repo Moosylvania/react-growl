@@ -25,7 +25,7 @@ var DemoApp = React.createClass({
 		//Growl.noAnimations();
 		Growl.setDelay(8000);
 
-		growler = this.refs.growler;
+		this.growler = this.refs.growler;
 
 		var self = this;
 
@@ -38,7 +38,7 @@ var DemoApp = React.createClass({
 	 *
 	 */
 	notify: function(level, msg) {
-		growler.addNotification({ level: level, msg: msg });
+		this.growler.addNotification({ level: level, msg: msg });
 	},
 
 	/* 

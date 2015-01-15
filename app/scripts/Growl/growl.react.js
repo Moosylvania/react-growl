@@ -51,10 +51,7 @@ var Growl = React.createClass({
 	},
 
 	getDefaultProps: function() {		
-		return {
-			level: "info"
-		};
-
+		return {};
 	},	
 
 	handleRemovedNotification: function(uid) {
