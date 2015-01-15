@@ -5,6 +5,17 @@ A 'Growl' style notification ReactJS component.
 
 npm install react-growl
 
+Note on Requirements: Many in package.json are listed in order to run the demo. The only requirement to install this into your application is React.
+
+### EXAMPLE
+
+Use npm to install. After installation, from the directory you installed into run:
+
+bower install
+gulp serve
+
+Will launch a browser with 
+
 ### USAGE
 
 In your app's main file:
@@ -25,6 +36,7 @@ var MyApp = React.createClass({
 
 		// Setup your Growl Settings
 		Growl.setPosition("tr"); // Bottom-Right(br) by default
+		Growl.setMaxToShow(1); // Default is 8
 
 		// set our internal variable to a reference to an instance of the growler
 		this.growler = this.refs.growler;
@@ -54,6 +66,8 @@ module.exports = MyApp;
 
 - setPosition: @arg String inArray: ["tr", "tl", "tc", "br", "bl", "bc"]
   - Sets the position where all notifications will appear. Default: "br"
+- setMaxToShow: @arg Integer
+  - The number of notifications to show before just showing "x more"
 - setDelay: @arg Integer ms
   - The amount of time, in milliseconds, a notification will appear. Be sure to include time needed for any initial animation when the notification is added.
 - getDelay: @returns Integer ms

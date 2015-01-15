@@ -7,6 +7,32 @@ var position = "br";
 var valid_positions = ["tl", "tr", "bl", "br", "tc", "bc"];
 var delay = 3000;
 var animations = true;
+var maxShown = 8;
+
+var movePosition = function() {
+	var y = position.slice(0, 1);
+	if(y == "t") {
+		holder.style.top = "0px";
+		holder.style.bottom = "auto";
+	} else {
+		holder.style.top = "auto";
+		holder.style.bottom = "0px";
+	}
+
+	var x = position.slice(1, 2);
+	if(x == "l") {
+		holder.style.left = "0px";
+		holder.style.right = "auto";
+	} else if(x == "r") {
+		holder.style.left = "auto";
+		holder.style.right = "0px";
+	} else {
+		var neg = holder.clientWidth / 2;
+		var left = (window.innerWidth / 2) - neg;
+		holder.style.left = left + "px";
+		holder.style.right = "auto";
+	}
+}
 
 var Growl = React.createClass({
 
@@ -29,6 +55,13 @@ var Growl = React.createClass({
 			} else {
 				console.log('Unknown position supplied.');
 			}
+
+			if(holder !== null) {
+				movePosition();
+			}
+		},
+		setMaxToShow: function(ct) {
+			maxShown = ct;
 		},
 		setDelay: function(del) {
 			delay = parseInt(del);
@@ -40,9 +73,8 @@ var Growl = React.createClass({
 		noAnimations: function() {
 			animations = false;
 			SingleGrowl.noAnimations();
-		}
+		}		
 	},
-
 
 	getInitialState: function() {
 		return {
@@ -89,17 +121,34 @@ var Growl = React.createClass({
 		if(holder === null) {
 			holder = this.getDOMNode();
 		}
+		movePosition();
 	},
 
 	render: function() {
 		var that = this;
 
+		if(this.state.notifications.length == 0 ) {
+			return <div className="growl-wrapper empty"></div>;
+		}
+		var isMore = "";
+		var count = 0;
+		if(this.state.notifications.length > maxShown) {
+			var amt = this.state.notifications.length - maxShown;
+			isMore = <li key="more-still"><span>{amt} more</span></li>
+		}
+
 		return (
 			<div className="growl-wrapper">
 			  <ul>
 				{this.state.notifications.map(function(n) {					
-					return <SingleGrowl key={n.uid} ref={n.ref} notification={n} onDidRemove={that.handleRemovedNotification} />
+					count += 1;
+					if(count >= maxShown) {
+						return "";
+					} else {
+						return <SingleGrowl key={n.uid} ref={n.ref} notification={n} onDidRemove={that.handleRemovedNotification} />
+					}
 				})}
+				{isMore}
 			  </ul>
 			</div>
 		);

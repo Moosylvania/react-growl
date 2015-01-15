@@ -32,10 +32,9 @@ body {
 
 .growl-wrapper {
   position: absolute;
-  bottom: 1em;
-  right: 1em;
   width: 20%;
-  height: 70%;
+  height: auto;
+  &.empty { display: none; }
   ul {
     position: absolute;
     bottom: 0;

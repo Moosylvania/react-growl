@@ -7,11 +7,7 @@ var DemoApp = React.createClass({
 	growler: null,
 	wrapper: null,
 
-	componentDidMount: function() {
-		if(this.wrapper === null) {
-			this.wrapper = this.getDOMNode();
-		}
-
+	componentWillMount: function() {
 		/** 
 		* Example usage.
 		*
@@ -21,9 +17,14 @@ var DemoApp = React.createClass({
 		* When setting the delay(ms), include any time you have for the animation you use to show the growl. (2s animation + 6s visible = 8s)
 		*
 		*/
-		Growl.setPosition("tr");
 		//Growl.noAnimations();
-		Growl.setDelay(8000);
+		Growl.setDelay(5000);
+	},
+
+	componentDidMount: function() {
+		if(this.wrapper === null) {
+			this.wrapper = this.getDOMNode();
+		}
 
 		this.growler = this.refs.growler;
 

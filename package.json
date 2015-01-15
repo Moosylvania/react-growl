@@ -1,7 +1,7 @@
 {
   "author": "Mitch Viner",
   "name": "react-growl",
-  "version" : "0.1.1",
+  "version" : "0.1.2",
   "keywords" : [
     "react",
     "react-component",
@@ -15,6 +15,9 @@
   },
   "engines": {
     "node": ">=0.10.0"
+  },
+  "dependencies": {
+    "react": ">=0.12.0"
   },
   "devDependencies": {
     "apache-server-configs": "^2.7.1",
@@ -47,7 +50,6 @@
     "serve-index": "^1.1.4",
     "serve-static": "^1.4.0",
     "wiredep": "^2.0.0",
-    "react": ">=0.12.0", 
     "react-router": ">=0.11.4", 
     "reactify": ">0.15.0",
     "browserify-shim": "^3.8.0",
