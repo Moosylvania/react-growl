@@ -1,6 +1,7 @@
 {
   "author": "Mitch Viner",
   "name": "react-growl",
+  "main": "app/scripts/Growl/growl.react.js",
   "version" : "0.1.2",
   "keywords" : [
     "react",
